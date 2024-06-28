@@ -1,0 +1,78 @@
+/* Consistent styling for headers and footers */
+header, footer {
+    background-color: #f8f9fa;
+    color: #343a40;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-family: Arial, sans-serif;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main content styling */
+section {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Form input styling */
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+}
+
+.inline-input {
+    width: 50px;
+}
+
+
+/* Button styling */
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Form label styling */
+label {
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+/* Challenge in styling: Ensuring responsive design */
+@media (max-width: 600px) {
+    input, textarea, select {
+        width: 100%;
+    }
+}
