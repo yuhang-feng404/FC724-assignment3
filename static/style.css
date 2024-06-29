@@ -45,10 +45,13 @@ input, textarea, select {
     font-family: Arial, sans-serif;
 }
 
-.inline-input {
+li input {
     width: 50px;
 }
 
+#recommend li {
+    display: inline;
+}
 
 /* Button styling */
 input[type="submit"] {
