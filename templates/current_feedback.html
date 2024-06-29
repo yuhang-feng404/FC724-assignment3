@@ -6,19 +6,35 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h1>Current Feedback Submission</h1>
-<h2>Thank you for submitting your feedback!</h2>
-<p>Your feedback has been successfully submitted.</p>
-<h3>Submission Details:</h3>
-<ul>
-    <li><strong>Name:</strong> {{ name }}</li>
-    <li><strong>Course:</strong> {{ course }}</li>
-    <li><strong>Short-form Answer:</strong> {{ short_answer }}</li>
-    <li><strong>Long-form Answer:</strong> {{ long_answer }}</li>
-    <li><strong>Overall Satisfaction:</strong> {{ satisfaction }}</li>
-    <li><strong>Recommend:</strong> {{ recommend }}</li>
-    <li><strong>Suggestions for Improvement:</strong> {{ improvements }}</li>
-</ul>
-<p>Thank you for taking the time to provide your feedback. We will review it carefully and use it to improve our courses.</p>
+<header>
+    <h1>Current Feedback Submission</h1>
+    <nav>
+        <ul>
+            <li><a href="/information">Information</a></li>
+            <li><a href="/data_collection">Data Collection</a></li>
+            <li><a href="/current_feedback">Current Submission</a></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    <h2>Thank you for submitting your feedback!</h2>
+    <p>Your feedback has been successfully submitted.</p>
+    <h3>Submission Details:</h3>
+    <ul>
+        <li><strong>Name:</strong> {{ name }}</li>
+        <li><strong>Course:</strong> {{ course }}</li>
+        <li><strong>Short-form Answer:</strong> {{ short_answer }}</li>
+        <li><strong>Long-form Answer:</strong> {{ long_answer }}</li>
+        <li><strong>Overall Satisfaction:</strong> {{ satisfaction }}</li>
+        <li><strong>Recommend:</strong> {{ recommend }}</li>
+        <li><strong>Suggestions for Improvement:</strong> {{ improvements }}</li>
+    </ul>
+    <p>Thank you for taking the time to provide your feedback. We will review it carefully and use it to improve our
+        courses.</p>
+</section>
+<footer>
+    <p>&copy; 2024 Glasgow International College</p>
+</footer>
+
 </body>
 </html>

@@ -1,8 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, TextAreaField, SelectField, RadioField
 from wtforms.validators import DataRequired
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key_here'
@@ -41,13 +40,24 @@ def information_page():  # put application's code here
 
 @app.route('/current_feedback')
 def current_feedback_submission():
-    name = 'John Doe'
-    course = 'Python Programming'
-    short_answer = 'This course was great!'
-    long_answer = 'I learned a lot from this course.'
-    satisfaction = 'very-satisfied'
-    recommend = 'yes'
-    improvements = 'More exercises would be helpful.'
+    try:
+        with open("feedback.txt", "r") as fp:
+            final_data = fp.read().split("|")
+            name = final_data[0]
+            course = final_data[1]
+            short_answer = final_data[2]
+            long_answer = final_data[3]
+            satisfaction = final_data[4]
+            recommend = final_data[5]
+            improvements = final_data[6]
+    except FileNotFoundError:
+        name = 'No feedback data found'
+        course = 'Please submit your feedback'
+        short_answer = 'No feedback data found'
+        long_answer = 'Please submit your feedback'
+        satisfaction = 'No feedback data found'
+        recommend = 'Please submit your feedback'
+        improvements = 'No feedback data found'
 
     return render_template('current_feedback.html',
                            name=name,
@@ -59,11 +69,11 @@ def current_feedback_submission():
                            improvements=improvements)
 
 
+
 @app.route('/data_collection', methods=['GET', 'POST'])
 def data_collection():
     form = StudentFeedbackForm()
     if form.validate_on_submit():
-        # process the form data here
         name = form.name.data
         course = form.course.data
         short_answer = form.short_answer.data
@@ -71,8 +81,18 @@ def data_collection():
         satisfaction = form.satisfaction.data
         recommend = form.recommend.data
         improvements = form.improvements.data
-        # do something with the data
-        return 'Thank you for submitting your feedback!'
+
+        name = name.replace('|', '')
+        course = course.replace('|', '')
+        short_answer = short_answer.replace('|', '')
+        long_answer = long_answer.replace('|', '')
+        satisfaction = satisfaction.replace('|', '')
+        recommend = recommend.replace('|', '')
+        improvements = improvements.replace('|', '')
+        final_data = name + "|" + course + "|" + short_answer + "|" + long_answer + "|" + satisfaction + "|" + recommend + "|" + improvements
+        with open("feedback.txt", "w") as fp:
+            fp.write(final_data)
+        return redirect('/current_feedback')
     return render_template('data_collection.html', form=form)
 
 
